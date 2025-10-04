@@ -74,6 +74,15 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 10px; /* ADICIONADO: espaço entre texto e botão */
+            flex-wrap: nowrap; /* ADICIONADO: impede quebra de linha */
+        }
+        .pix-copia-cola span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap; /* ADICIONADO: impede quebra de linha no texto */
+            display: block;
+            max-width: 70%; /* AJUSTE: limita largura do texto para não colar no botão */
         }
         .copy-btn {
             background: #6B8E23; /* verde-oliva médio */
@@ -158,14 +167,12 @@
         <p>Se quiser nos presentear, envie um Pix para a chave ou use o QR Code abaixo:</p>
         <div class="label">Chave Pix (celular):</div>
         <div class="pix-key" id="pixKey">
-            <span id="pixKeyText">(88) 9 8180.8805</span>
+            <span id="pixKeyText"></span>
             <button class="copy-btn" onclick="copyPixKey()">Copiar</button>
         </div>
         <div class="label">Pix Copia e Cola:</div>
         <div class="pix-copia-cola" id="pixCopiaCola">
-            <span id="pixCopiaColaText">
-                00020126360014br.g...
-            </span>
+            <span id="pixCopiaColaText"></span>
             <button class="copy-btn" onclick="copyPixCopiaCola()">Copiar</button>
         </div>
         <div class="label" style="margin-top:18px;">Ou leia o QR Code abaixo com seu app de banco:</div>
@@ -178,16 +185,33 @@
         Feito com <span style="color:#556B2F;">&#x1F49A;</span> para nosso casamento
     </div>
     <script>
+        // Dados das chaves
+        const pixKeyCompleto = "(88) 9 8180.8805";
+        const pixCopiaColaCompleto = "00020126360014br.gov.bcb.pix0114+55889818088055204000053039865802BR5925GLEIDIANE FERNANDES DA SI6009Sao Paulo62290525REC68E041154965F671841265630484B9";
+
+        // Função para limitar visualização de texto longo
+        function limitarTexto(texto, maxInicio, maxFim) {
+            if (texto.length <= maxInicio + maxFim + 3) return texto;
+            const inicio = texto.slice(0, maxInicio);
+            const fim = texto.slice(-maxFim);
+            return `${inicio}...${fim}`;
+        }
+
+        // Preencher chave Pix (celular)
+        document.getElementById('pixKeyText').innerText = limitarTexto(pixKeyCompleto, 16, 0);
+
+        // Preencher Pix Copia e Cola
+        document.getElementById('pixCopiaColaText').innerText = limitarTexto(pixCopiaColaCompleto, 16, 8);
+
+        // Funções de copiar
         function copyPixKey() {
-            const pixKey = document.getElementById('pixKeyText').innerText;
-            navigator.clipboard.writeText(pixKey).then(function() {
+            navigator.clipboard.writeText(pixKeyCompleto).then(function() {
                 alert('Chave Pix copiada!');
             }, function() {
                 alert('Não foi possível copiar a chave Pix.');
             });
         }
         function copyPixCopiaCola() {
-            const pixCopiaColaCompleto = "00020126360014br.gov.bcb.pix0114+55889818088055204000053039865802BR5925GLEIDIANE FERNANDES DA SI6009Sao Paulo62290525REC68E041154965F671841265630484B9";
             navigator.clipboard.writeText(pixCopiaColaCompleto).then(function() {
                 alert('Pix Copia e Cola copiado!');
             }, function() {
