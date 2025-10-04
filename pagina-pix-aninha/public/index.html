@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Presente de Casamento - Pix</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%92%9A%3C/text%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -168,7 +169,6 @@
             <button class="copy-btn" onclick="copyPixCopiaCola()">Copiar</button>
         </div>
         <div class="qr-code">
-            <!-- Substitua o src pelo link do QR Code gerado do seu Pix Copia e Cola -->
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=00020126360014br.gov.bcb.pix0114%2B55889818088055204000053039865802BR5925GLEIDIANE%20FERNANDES%20DA%20SI6009Sao%20Paulo62290525REC68E041154965F671841265630484B9" alt="QR Code Pix" width="180" height="180" style="border-radius:12px;box-shadow:0 2px 8px #bfc8a1;">
         </div>
         <p>Obrigado pelo carinho! 💍</p>
@@ -186,7 +186,6 @@
             });
         }
         function copyPixCopiaCola() {
-            // O valor completo do Pix Copia e Cola
             const pixCopiaColaCompleto = "00020126360014br.gov.bcb.pix0114+55889818088055204000053039865802BR5925GLEIDIANE FERNANDES DA SI6009Sao Paulo62290525REC68E041154965F671841265630484B9";
             navigator.clipboard.writeText(pixCopiaColaCompleto).then(function() {
                 alert('Pix Copia e Cola copiado!');
